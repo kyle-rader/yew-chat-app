@@ -3,5 +3,3 @@ node_modules
 /target
 /pkg
 /wasm-pack.log
-.DS_Store
-.vscode

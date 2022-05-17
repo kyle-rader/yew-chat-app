@@ -12,6 +12,14 @@ use components::login::Login;
 
 mod services;
 
+// When the `wee_alloc` feature is enabled, this uses `wee_alloc` as the global
+// allocator.
+//
+// If you don't want to use `wee_alloc`, you can safely delete this.
+#[cfg(feature = "wee_alloc")]
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+
 #[derive(Debug, Clone, Copy, PartialEq, Routable)]
 pub enum Route {
     #[at("/")]
@@ -52,15 +60,15 @@ fn main() -> Html {
     }
 }
 
-pub fn run_app() -> Result<(), JsValue> {
-    wasm_logger::init(wasm_logger::Config::default());
-    yew::start_app::<Main>();
-    Ok(())
-}
-
 pub type User = Rc<UserInner>;
 
 #[derive(Debug, PartialEq)]
 pub struct UserInner {
     pub username: RefCell<String>,
+}
+
+fn main() -> Result<(), JsValue> {
+    wasm_logger::init(wasm_logger::Config::default());
+    yew::start_app::<Main>();
+    Ok(())
 }

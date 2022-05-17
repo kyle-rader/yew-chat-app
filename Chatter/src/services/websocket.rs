@@ -9,7 +9,7 @@ pub struct WebSocketService {
 
 impl WebSocketService {
     pub fn new() -> Self {
-        let ws = WebSocket::open("ws://127.0.0.1:8080").expect("Failed to open web socket!");
+        let ws = WebSocket::open("ws://127.0.0.1:3000").expect("Failed to open web socket!");
 
         let (mut write, mut read) = ws.split();
 
