@@ -10,6 +10,8 @@ mod components;
 use components::chat::Chat;
 use components::login::Login;
 
+mod services;
+
 #[derive(Debug, Clone, Copy, PartialEq, Routable)]
 pub enum Route {
     #[at("/")]
